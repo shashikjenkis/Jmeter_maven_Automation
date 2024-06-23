@@ -18,11 +18,6 @@ pipeline {
             }
         }
         
-         stage('archiveArtifacts') {
-            steps {
-                 archiveArtifacts artifacts: '*.csv'
-            }
-        }
     }
     
     }
