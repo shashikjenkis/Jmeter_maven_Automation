@@ -30,7 +30,7 @@ pipeline {
                         <p>Check console output at <a href="${consoleOutputUrl}">${consoleOutputUrl}</a></p>
                     """,
                     to: 'shashik064@gmail.com',
-                    from: 'sender@example.com',
+                    from: 'shashik064@gmail.com',
                     mimeType: 'text/html'
                 )
             }
