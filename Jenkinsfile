@@ -4,7 +4,6 @@ pipeline {
         maven 'maven3.9.6' 
     }
     
-    
     stages {
         stage('source') {
             steps {
@@ -17,8 +16,24 @@ pipeline {
                  sh "mvn verify"
             }
         }
-        
-    }
-    
     }
 
+    post {
+        always {
+            script {
+                def buildStatus = currentBuild.currentResult
+                def consoleOutputUrl = "${env.BUILD_URL}console"
+                emailext (
+                    subject: "Build ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                    body: """
+                        <p>Build ${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'</p>
+                        <p>Check console output at <a href="${consoleOutputUrl}">${consoleOutputUrl}</a></p>
+                    """,
+                    to: 'shashik064@gmail.com',
+                    from: 'sender@example.com',
+                    mimeType: 'text/html'
+                )
+            }
+        }
+    }
+}
