@@ -20,7 +20,7 @@ pipeline {
         
          stage('archiveArtifacts') {
             steps {
-                 archiveArtifacts artifacts: 'target'
+                 archiveArtifacts artifacts: '*.csv'
             }
         }
     }
