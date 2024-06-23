@@ -11,7 +11,7 @@ pipeline {
                 }
              
             }
-            stage('Verify') {
+            stage('verify') {
                 setps {
                     sh "mvn verify"
                 }
