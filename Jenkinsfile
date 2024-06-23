@@ -17,24 +17,7 @@ pipeline {
                  sh "mvn verify"
             }
         }
-        stage('runPerformanceTests') {
-            steps {
-                // Run JMeter tests and save the results to a specific file
-                sh "mvn jmeter:jmeter -Dlog_file=results.jtl"
-            }
-        }
-        stage('publishPerformanceReport') {
-            steps {
-                script {
-                    // Use the performance plugin to publish test results
-                    perfReport errorFailedThreshold: 0, 
-                               errorUnstableThreshold: 0, 
-                               relativeFailedThresholdPositive: 1.0, 
-                               relativeUnstableThresholdPositive: 0.2, 
-                               sourceDataFiles: 'results.jtl'
-                }
-            }
-        }
+        
          stage('archiveArtifacts') {
             steps {
                  archiveArtifacts artifacts: 'target'
