@@ -1,5 +1,5 @@
 pipeline {
-    agent {'jmeter_slave_node1'} 
+    agent { label 'jmeter_slave_node1'} 
         tools {
             maven 'maven3.9.6'
         }
