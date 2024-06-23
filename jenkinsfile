@@ -1,0 +1,21 @@
+pipeline {
+    agent {'jmeter_slave_node1'} {
+        tools {
+            maven 'maven3.9.6'
+        }
+        stages {
+            stage('source') {
+                setps {
+                    git url: 'https://github.com/shashikjenkis/Jmeter_maven_Automation.git',
+                    branch: 'master'
+                }
+             
+            }
+            stage('verify') {
+                setps {
+                    sh "mvn verify"
+                }
+            }
+        }
+    }
+}
